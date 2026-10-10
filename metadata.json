@@ -1,0 +1,6 @@
+{
+  "name": "SAHAYAK AI — Indian Citizen Super App",
+  "description": "Unified digital assistance platform for Indian citizens: government schemes discovery, public grievance management, verified emergency helplines, multilingual civic assistant, and administrative oversight.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
