@@ -14,7 +14,8 @@ import {
   Bot, 
   LayoutDashboard,
   CircleHelp,
-  Lock
+  Lock,
+  Laptop
 } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -117,6 +118,18 @@ export const Footer: React.FC = () => {
                 <Link to="/dashboard" className="hover:text-white transition flex items-center gap-1.5">
                   <LayoutDashboard className="w-3.5 h-3.5 text-slate-400" />
                   <span>{t.nav.dashboard}</span>
+                </Link>
+              </li>
+              <li className="pt-1 border-t border-slate-800/80">
+                <Link to="/itr-report" className="hover:text-emerald-400 transition text-emerald-300 font-medium flex items-center gap-1.5">
+                  <FileText className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>ITR Report (A4 Printable)</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/project-ppt" className="hover:text-violet-400 transition text-violet-300 font-medium flex items-center gap-1.5">
+                  <Laptop className="w-3.5 h-3.5 text-violet-400" />
+                  <span>Project Output PPT (Slides)</span>
                 </Link>
               </li>
             </ul>

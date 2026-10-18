@@ -1,1 +1,79 @@
 @import "tailwindcss";
+
+/* ==========================================================================
+   ACADEMIC A4 ITR REPORT & 16:9 PPT PRINT STYLESHEET
+   ========================================================================== */
+
+@layer utilities {
+  .page-break-always {
+    page-break-after: always;
+    break-after: page;
+  }
+  .page-break-avoid {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+
+@media print {
+  /* Hide standard web chrome */
+  header, footer, nav, .no-print, button, .print-hidden, aside {
+    display: none !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Specific print setups for A4 Report */
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm 12mm 12mm;
+  }
+
+  .a4-page-sheet {
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    min-height: 268mm !important;
+    max-height: 275mm !important;
+    width: 100% !important;
+    padding: 8mm 10mm !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .ppt-slide-sheet {
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    padding: 12mm !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    background: #0B1120 !important;
+    color: #f8fafc !important;
+    overflow: hidden !important;
+  }
+}

@@ -18,7 +18,10 @@ import {
   CircleHelp, 
   Sparkles, 
   ClipboardList, 
-  Phone
+  Phone,
+  Laptop,
+  Award,
+  Download
 } from 'lucide-react';
 
 export const LandingPage: React.FC = () => {
@@ -161,6 +164,44 @@ export const LandingPage: React.FC = () => {
             <Link to="/emergency" className="underline text-rose-300 hover:text-white flex items-center gap-1">
               <span>All Helplines</span>
               <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Elite Forums Internship & Project Defense Banner */}
+      <section className="bg-slate-900 border-b border-slate-800 py-3.5 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2.5">
+            <span className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              <Award className="w-4 h-4" />
+            </span>
+            <div>
+              <span className="font-bold text-white">Elite Forums Internship Evaluation Hub:</span>
+              <span className="text-slate-400 ml-1.5 hidden sm:inline">Karan Yadav • 3 Full Stack Projects Delivered</span>
+            </div>
+          </div>
+          <div className="flex flex-wrap items-center gap-2.5">
+            <Link
+              to="/itr-report?download=pdf"
+              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold flex items-center gap-1.5 shadow-md shadow-emerald-500/20 transition active:scale-95"
+            >
+              <Download className="w-3.5 h-3.5 text-slate-950" />
+              <span>Download ITR PDF</span>
+            </Link>
+            <Link
+              to="/itr-report"
+              className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium flex items-center gap-1.5 transition"
+            >
+              <FileText className="w-3.5 h-3.5 text-emerald-400" />
+              <span>View Report (12 A4 Pages)</span>
+            </Link>
+            <Link
+              to="/project-ppt"
+              className="px-3 py-1.5 rounded-xl bg-violet-950/80 hover:bg-violet-900 text-violet-300 border border-violet-500/40 font-medium flex items-center gap-1.5 transition"
+            >
+              <Laptop className="w-3.5 h-3.5 text-violet-400" />
+              <span>Project PPT (16 Slides)</span>
             </Link>
           </div>
         </div>
