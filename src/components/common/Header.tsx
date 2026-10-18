@@ -16,9 +16,7 @@ import {
   X, 
   UserRound, 
   LogOut,
-  ChevronDown,
-  FileCheck,
-  Presentation
+  ChevronDown
 } from 'lucide-react';
 import { getLocalNotifications } from '../../lib/supabase';
 
@@ -45,8 +43,6 @@ export const Header: React.FC = () => {
     { name: t.nav.complaints, path: '/complaints', icon: FileText },
     { name: t.nav.emergency, path: '/emergency', icon: Siren, urgent: true },
     { name: t.nav.assistant, path: '/assistant', icon: Bot },
-    { name: 'ITR Report', path: '/itr-report', icon: FileCheck },
-    { name: 'Project PPT', path: '/project-ppt', icon: Presentation },
     ...(profile ? [{ name: t.nav.dashboard, path: '/dashboard', icon: LayoutDashboard }] : []),
     ...(isAdmin ? [{ name: t.nav.admin, path: '/admin', icon: ShieldCheck, admin: true }] : []),
   ];

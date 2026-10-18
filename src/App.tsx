@@ -23,8 +23,6 @@ import { EmergencyPage } from './features/emergency/EmergencyPage';
 import { NotificationsPage } from './features/notifications/NotificationsPage';
 import { ProfilePage } from './features/profile/ProfilePage';
 import { AdminPage } from './features/admin/AdminPage';
-import { ItrReportPage } from './features/internship/ItrReportPage';
-import { ProjectPptPage } from './features/internship/ProjectPptPage';
 
 export default function App() {
   return (
@@ -50,8 +48,6 @@ export default function App() {
                 <Route path="/notifications" element={<NotificationsPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/admin" element={<AdminPage />} />
-                <Route path="/itr-report" element={<ItrReportPage />} />
-                <Route path="/project-ppt" element={<ProjectPptPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </main>
