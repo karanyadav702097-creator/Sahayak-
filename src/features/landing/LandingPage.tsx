@@ -61,76 +61,111 @@ export const LandingPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0B0F17] text-slate-100 flex flex-col">
-      {/* Hero Section with Tasteful Indian Civic Identity */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-[#0B0F17] text-white pt-16 pb-24 lg:pt-20 lg:pb-32 border-b border-slate-800">
-        {/* Subtle decorative civic pattern */}
-        <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+      {/* Hero Section with Rashtrapati Bhavan Sunset Photographic Backdrop */}
+      <section className="relative overflow-hidden bg-[#070D18] text-white pt-12 pb-20 lg:pt-16 lg:pb-28 border-b border-slate-800/80 min-h-[540px] lg:min-h-[600px] flex items-center">
+        {/* Right-aligned Photographic Landmark Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+          {/* Landmark Building Image */}
+          <img
+            src="/assets/rashtrapati_bhavan_sunset.jpg"
+            alt="Rashtrapati Bhavan Presidential Palace, New Delhi"
+            className="absolute top-0 right-0 w-full lg:w-7/12 h-full object-cover object-center lg:object-right filter brightness-95 contrast-105"
+          />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+          {/* Seamless Multi-Layer Gradient Overlays matching user reference:
+              1. Left-to-right solid dark navy to transparent so typography stands out
+              2. Bottom fade into page background
+              3. Top subtle vignette
+          */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070D18] via-[#070D18]/95 sm:via-[#070D18]/85 md:via-[#070D18]/70 lg:via-[#070D18]/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-transparent to-[#070D18]/60"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(15,23,42,0.8),transparent_60%)]"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-2xl lg:max-w-3xl space-y-6 text-left">
             
-            {/* Indian Civic Identity Badge with National Flag */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-slate-200 text-xs font-semibold backdrop-blur-sm shadow-md">
-              <IndiaFlag width={20} height={13} className="rounded-2xs shrink-0" />
-              <span>Built for Citizens of India</span>
-              <span className="text-slate-600">•</span>
-              <span className="text-amber-400 font-bold">{t.hero.badge}</span>
+            {/* National Badge matching screenshot */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-slate-200 text-xs font-semibold backdrop-blur-md shadow-lg">
+              <span className="text-amber-400 font-bold text-sm">⬡</span>
+              <span className="text-slate-300 font-medium">One platform for a better India</span>
+              <span className="text-slate-600 hidden sm:inline">•</span>
+              <span className="text-orange-400 font-semibold hidden sm:inline">National Citizen Super App</span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              {t.hero.title}
+            {/* Main Headline matching screenshot:
+                Government Services,
+                Grievances and Support
+                Made Simple
+            */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
+              Government Services,<br />
+              Grievances and Support<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-500 to-amber-500">
+                Made Simple
+              </span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
-              {t.hero.subtitle}
+            {/* Subtitle matching screenshot */}
+            <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed font-normal">
+              Discover schemes, file grievances, get verified helplines and chat with your AI civic assistant — all in one place.
             </p>
 
-            {/* Unified Search Bar with Lucide Search icon */}
-            <form onSubmit={handleHeroSearch} className="max-w-xl mx-auto pt-2">
-              <div className="relative flex items-center shadow-2xl rounded-2xl bg-slate-900/90 p-1.5 border border-slate-700 focus-within:border-emerald-500 transition">
-                <Search className="w-5 h-5 text-slate-400 ml-3 shrink-0" />
+            {/* Unified Search Bar matching screenshot with Orange Action Button */}
+            <form onSubmit={handleHeroSearch} className="max-w-2xl pt-2">
+              <div className="relative flex items-center shadow-2xl rounded-2xl bg-slate-900/95 backdrop-blur-md p-1.5 border border-slate-700/90 focus-within:border-orange-500 focus-within:ring-2 focus-within:ring-orange-500/20 transition">
+                <Search className="w-5 h-5 text-slate-400 ml-3.5 shrink-0" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={t.hero.searchPlaceholder}
-                  className="w-full px-3 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-hidden bg-transparent"
+                  placeholder="Search for a scheme, service, or department..."
+                  className="w-full px-3.5 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-hidden bg-transparent"
                 />
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition shrink-0 cursor-pointer shadow-md flex items-center gap-1.5 ring-1 ring-emerald-400/30"
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold text-sm transition shrink-0 cursor-pointer shadow-lg shadow-orange-950/40 flex items-center gap-2 ring-1 ring-orange-400/40 active:scale-95"
                 >
-                  <Search className="w-3.5 h-3.5" />
+                  <Search className="w-4 h-4 text-white" />
                   <span>Search</span>
                 </button>
               </div>
             </form>
 
-            {/* Primary Actions with Lucide icons */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
-              <Link
-                to="/signup"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-950/40 transition cursor-pointer ring-1 ring-emerald-400/40"
-              >
-                <span>{t.hero.ctaPrimary}</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+            {/* Quick Actions & Trust Note */}
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <Link
                 to="/schemes"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-sm transition"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-xs transition backdrop-blur-sm shadow-sm"
               >
-                <Landmark className="w-4 h-4 text-emerald-400" />
-                <span>{t.hero.ctaSecondary}</span>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
+                <Landmark className="w-4 h-4 text-orange-400" />
+                <span>Explore Government Schemes</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              </Link>
+
+              <Link
+                to="/complaints/new"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-xs transition backdrop-blur-sm shadow-sm"
+              >
+                <FileText className="w-4 h-4 text-emerald-400" />
+                <span>File Grievance</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              </Link>
+
+              <Link
+                to="/assistant"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-xs transition backdrop-blur-sm shadow-sm"
+              >
+                <Bot className="w-4 h-4 text-sky-400" />
+                <span>Ask AI Assistant</span>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
               </Link>
             </div>
 
             {/* Trust disclaimer */}
-            <div className="pt-4 flex items-center justify-center gap-2 text-[11px] text-slate-400">
+            <div className="pt-2 flex items-center gap-2 text-[11px] text-slate-400">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>{t.hero.trustNote}</span>
+              <span>Independent civic utility assisting citizens. Official links redirect directly to verified .gov.in portals.</span>
             </div>
 
           </div>

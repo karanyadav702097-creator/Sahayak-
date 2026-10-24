@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useI18n } from '../../locales/i18nContext';
 import { BrandLogo } from './BrandLogo';
 import { 
+  Home,
   Landmark, 
   FileText, 
   Siren, 
@@ -39,6 +40,7 @@ export const Header: React.FC = () => {
   };
 
   const navLinks = [
+    { name: t.nav.home || 'Home', path: '/', icon: Home },
     { name: t.nav.schemes, path: '/schemes', icon: Landmark },
     { name: t.nav.complaints, path: '/complaints', icon: FileText },
     { name: t.nav.emergency, path: '/emergency', icon: Siren, urgent: true },
@@ -65,13 +67,13 @@ export const Header: React.FC = () => {
               
               <div className="flex flex-col">
                 <span className="font-extrabold text-lg tracking-tight text-white leading-none">
-                  SAHAYAK<span className="text-emerald-400 ml-0.5">AI</span>
+                  SAHAYAK<span className="text-orange-500 ml-0.5">AI</span>
                 </span>
                 
                 <span className="text-[10px] text-slate-400 font-medium tracking-tight mt-1 hidden sm:flex items-center gap-1">
                   <span>National Citizen Super App</span>
                   <span className="text-slate-600">•</span>
-                  <span className="text-emerald-400 font-semibold">Bharat</span>
+                  <span className="text-orange-400 font-semibold">Bharat</span>
                 </span>
               </div>
             </div>
@@ -86,7 +88,7 @@ export const Header: React.FC = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-all ${
+                  className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
                     link.urgent
                       ? active 
                         ? 'bg-rose-950/70 text-rose-300 font-bold ring-1 ring-rose-500/50 shadow-sm'
@@ -96,11 +98,11 @@ export const Header: React.FC = () => {
                         ? 'bg-amber-950/70 text-amber-300 font-bold ring-1 ring-amber-500/50 shadow-sm'
                         : 'text-amber-400 hover:bg-amber-950/40'
                       : active
-                      ? 'bg-slate-800 text-white font-bold shadow-xs border border-slate-700/60'
+                      ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white font-bold shadow-md shadow-orange-950/40 border border-orange-500/40 ring-1 ring-orange-400/30'
                       : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 shrink-0 ${link.urgent ? 'text-rose-400' : link.admin ? 'text-amber-400' : active ? 'text-emerald-400' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 shrink-0 ${link.urgent ? 'text-rose-400' : link.admin ? 'text-amber-400' : active ? 'text-white' : 'text-slate-400'}`} />
                   <span>{link.name}</span>
                 </Link>
               );
@@ -295,11 +297,11 @@ export const Header: React.FC = () => {
                     : link.admin
                     ? active ? 'bg-amber-950/70 text-amber-300' : 'bg-amber-950/30 text-amber-400'
                     : active
-                    ? 'bg-slate-800 text-white font-semibold'
+                    ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white font-bold shadow-md shadow-orange-950/40'
                     : 'text-slate-300 hover:bg-slate-850 hover:text-white'
                 }`}
               >
-                <Icon className={`w-5 h-5 ${link.urgent ? 'text-rose-400' : link.admin ? 'text-amber-400' : 'text-emerald-400'}`} />
+                <Icon className={`w-5 h-5 ${link.urgent ? 'text-rose-400' : link.admin ? 'text-amber-400' : active ? 'text-white' : 'text-slate-400'}`} />
                 <span>{link.name}</span>
               </Link>
             );
