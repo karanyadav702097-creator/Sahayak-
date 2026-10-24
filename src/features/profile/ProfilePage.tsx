@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useI18n } from '../../locales/i18nContext';
 import { LanguageCode } from '../../types';
@@ -14,12 +15,16 @@ import {
   AlertCircle,
   LogOut,
   Save,
-  Phone
+  Phone,
+  LogIn,
+  UserPlus,
+  ArrowLeft
 } from 'lucide-react';
 
 export const ProfilePage: React.FC = () => {
   const { profile, updateProfile, signOut, isAdmin, toggleAdminRolePreview } = useAuth();
   const { languages, setLanguage } = useI18n();
+  const navigate = useNavigate();
 
   const [displayName, setDisplayName] = useState(profile?.display_name || '');
   const [phoneNumber, setPhoneNumber] = useState(profile?.phone_number || '');
@@ -35,6 +40,26 @@ export const ProfilePage: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Sync state if profile changes
+  useEffect(() => {
+    if (profile) {
+      setDisplayName(profile.display_name || '');
+      setPhoneNumber(profile.phone_number || '');
+      setState(profile.state || 'Maharashtra');
+      setDistrict(profile.district || 'Pune');
+      setLocality(profile.locality || '');
+      setLanguagePref(profile.preferred_language || 'en');
+      setEmailNotif(profile.notification_preferences?.email ?? true);
+      setInAppNotif(profile.notification_preferences?.in_app ?? true);
+      setSchemeAlerts(profile.notification_preferences?.scheme_updates ?? true);
+    }
+  }, [profile]);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,6 +91,57 @@ export const ProfilePage: React.FC = () => {
       setTimeout(() => setSuccessMessage(null), 3000);
     }
   };
+
+  if (!profile) {
+    return (
+      <div className="min-h-screen bg-[#0B0F17] text-slate-100 py-16">
+        <div className="max-w-md mx-auto px-4 text-center">
+          <div className="bg-slate-900/90 rounded-2xl border border-slate-800 p-8 shadow-2xl backdrop-blur-xs space-y-6">
+            <div className="w-16 h-16 rounded-2xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto shadow-lg">
+              <UserRound className="w-8 h-8" />
+            </div>
+            
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300">
+                <IndiaFlag width={14} height={9} className="rounded-2xs" />
+                <span>Citizen Account Required</span>
+              </div>
+              <h1 className="text-xl font-extrabold text-white">Sign In to View Profile</h1>
+              <p className="text-xs text-slate-400">
+                You are currently signed out. Please sign in or register a new citizen profile to manage your personal details, regional preferences, and notification alerts.
+              </p>
+            </div>
+
+            <div className="space-y-3 pt-2">
+              <Link
+                to="/login"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg shadow-emerald-950/40 transition ring-1 ring-emerald-400/30"
+              >
+                <LogIn className="w-4 h-4" />
+                <span>Sign In to SAHAYAK AI</span>
+              </Link>
+              
+              <Link
+                to="/signup"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-800 text-slate-200 text-xs font-bold transition"
+              >
+                <UserPlus className="w-4 h-4 text-slate-400" />
+                <span>Create New Account</span>
+              </Link>
+
+              <Link
+                to="/"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-slate-400 hover:text-slate-200 text-xs font-medium transition"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>Back to Home</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0B0F17] text-slate-100 py-8">
@@ -278,7 +354,7 @@ export const ProfilePage: React.FC = () => {
           <div className="flex items-center justify-between pt-2">
             <button
               type="button"
-              onClick={signOut}
+              onClick={handleSignOut}
               className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-rose-500/40 text-rose-300 hover:bg-rose-950/40 text-xs font-bold cursor-pointer transition"
             >
               <LogOut className="w-4 h-4 text-rose-400" />

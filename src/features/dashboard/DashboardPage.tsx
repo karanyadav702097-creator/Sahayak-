@@ -26,7 +26,9 @@ import {
   ChevronRight,
   Bell,
   HeartPulse,
-  ShieldCheck
+  ShieldCheck,
+  LogIn,
+  UserPlus
 } from 'lucide-react';
 
 export const DashboardPage: React.FC = () => {
@@ -86,6 +88,31 @@ export const DashboardPage: React.FC = () => {
             </div>
           </form>
         </div>
+
+        {/* Guest Mode Banner when logged out */}
+        {!profile && (
+          <div className="bg-gradient-to-r from-emerald-950/40 via-slate-900/90 to-amber-950/30 border border-emerald-500/30 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl backdrop-blur-xs">
+            <div className="flex items-start sm:items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
+                <Sparkles className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-white">Browsing in Guest Mode</p>
+                <p className="text-xs text-slate-400">Sign in or create your Citizen profile to sync grievances, bookmark welfare schemes, and receive regional civic notifications.</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <Link to="/login" className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition shadow-md shadow-emerald-950/40 ring-1 ring-emerald-400/30">
+                <LogIn className="w-3.5 h-3.5" />
+                <span>Sign In</span>
+              </Link>
+              <Link to="/signup" className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-750 text-slate-300 text-xs font-semibold transition">
+                <UserPlus className="w-3.5 h-3.5 text-slate-400" />
+                <span>Register</span>
+              </Link>
+            </div>
+          </div>
+        )}
 
         {/* Quick Action Grid with Colorful Individually Differentiated Cards */}
         <div>
